@@ -25,7 +25,8 @@ Below you can find some of the apps I have build in Python. Feel free to contact
 """
 st.write(content2)
 
-col3, col4 = st.columns(2)
+col3, empty_col, col4 = st.columns(1.5,0.5,1.5)
+# The number sets the sizes of the columns
 
 df = pandas.read_csv("files/data.csv", sep=";")
 # the default "sep" is a comma
@@ -33,8 +34,16 @@ df = pandas.read_csv("files/data.csv", sep=";")
 with col3:
     for index, row in df[:10].iterrows():
         st.header(row["title"])
-
+        st.write(row["description"])
+        st.image("files/images/" + row["image"])
+        st.write(f"[Source Code]({row['url']})")
+        
 with col4:
     for index, row in df[10:].iterrows():
         st.header(row["title"])
+        st.write(row["description"])
+        st.image("files/images/" + row["image"])
+        st.write(f"[Source Code]({row['url']})")
+
+
 # Splits the list into two columns based on their index. 
